@@ -1,8 +1,10 @@
 package Model;
 
 import Datos.Conexion;
+import Entity.ECards;
 import Entity.ECliente;
 import Entity.EResponse;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,12 +14,10 @@ import java.util.List;
 
 public class Cliente {
 
-    private static final String INSERT_SQL = "INSERT INTO cliente (descNombre,descApellido,descEmail,numTelefono,numSaldo) VALUES (?,?,?,?,?)";
-    private static final String SELECT_SQL = "SELECT idCliente,descNombre,descApellido,descEmail,numTelefono,numSaldo FROM cliente WHERE flgEstado = 1";
-    private static final String UPDATE_SQL = "UPDATE cliente "
-            + "SET descNombre=?,descApellido=?,descEmail=?,numTelefono=?, numSaldo = ? "
-            + "WHERE idCliente = ?";
-    private static final String DELETE_SQL = "UPDATE cliente SET flgEstado = 0 WHERE idCliente = ?";
+     private static final String INSERT_SQL = "INSERT INTO cliente (descnombre,descapellido,descemail,numtelefono,mntsaldo) VALUES (?,?,?,?,?)";
+    private static final String SELECT_SQL = "SELECT idcliente,descnombre,descapellido,descemail,numtelefono,mntsaldo FROM cliente WHERE flgestado = 1";
+    private static final String UPDATE_SQL = "UPDATE cliente SET descnombre = ?, descapellido = ?, descemail = ?, numtelefono = ?, mntsaldo = ? WHERE idcliente = ?";
+    private static final String DELETE_SQL = "UPDATE cliente SET flgestado = 0 WHERE idcliente = ?";
 
     public static EResponse insertCliente(ECliente objCliente) throws SQLException {
         EResponse<EResponse> response = new EResponse<>();
@@ -119,5 +119,23 @@ public class Cliente {
             Conexion.closeConnection(cn);
         }
         return response;
+    }
+    
+    public static ECards getCardsClient() throws SQLException {
+        Connection cn = Conexion.getConnection();
+        ECards card = new ECards();
+        try {
+            //Deben cambiar el procedimiento almacenado (recuerden que esta sin parametros)
+            CallableStatement cs = cn.prepareCall("{CALL getCardsCliente()}");
+            ResultSet rs = cs.executeQuery();
+            if (rs.next()) {
+                card.setTotalClientes(rs.getInt("totalClientes"));
+                card.setTotalSaldo(rs.getFloat("totalSaldo"));
+                card.setTotalClienteTelf(rs.getInt("totalClienteTelf"));
+            }
+        } finally {
+            Conexion.closeConnection(cn);
+        }
+        return card;
     }
 }

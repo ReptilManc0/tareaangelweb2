@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Cliente TODOS</title>
         <jsp:include page="PartialView/Header.jsp"></jsp:include>
         </head>
         <body>
@@ -39,19 +39,19 @@
                     <div class="card text-center bg-info text-white">
                         <div class="card-body">
                             <h5 class="card-title">Total Clientes</h5>
-                            <p class="card-text"></p>
+                            <p class="card-text" id="bodyCardTCliente"></p>
                         </div>
                     </div>
                     <div class="card text-center bg-success text-white mt-2">
                         <div class="card-body">
-                            <h5 class="card-title">Total Clientes</h5>
-                            <p class="card-text"></p>
+                            <h5 class="card-title">Total Saldo</h5>
+                            <p class="card-text" id="bodyCardTSaldo"></p>
                         </div>
                     </div>
                     <div class="card text-center bg-warning text-white mt-2">
                         <div class="card-body">
-                            <h5 class="card-title">Total Clientes</h5>
-                            <p class="card-text"></p>
+                            <h5 class="card-title">Total de Clientes con Telefono</h5>
+                            <p class="card-text"id="bodyCardTClienteTelf"></p>
                         </div>
                     </div>
                 </div>

@@ -55,6 +55,9 @@ function cargarClientes() {
                 content += `</tr>`;
             }
             $("#bodyTable").html(content);
+            $("#bodyCardTCliente").html(arg.totalClientes);
+            $("#bodyCardTSaldo").html(arg.totalSaldo);
+            $("#bodyCardTClienteTelf").html(arg.totalClienteTelf);
         }
     });
 }

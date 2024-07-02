@@ -1,5 +1,6 @@
 package Controller;
 
+import Entity.ECards;
 import Entity.ECliente;
 import Entity.EResponse;
 import Model.Cliente;
@@ -81,7 +82,11 @@ public class ClienteController extends HttpServlet {
 
             List<ECliente> respuesta = (List<ECliente>) mantenimientoCliente(type, null);
             JSONObject json = new JSONObject();
+            ECards card = Cliente.getCardsClient();
             json.put("body", respuesta);
+            json.put("totalClientes", card.getTotalClientes());
+            json.put("totalSaldo", card.getTotalSaldo());
+            json.put("totalClienteTelf", card.getTotalClienteTelf());
 
             response.setContentType("application/json");
             PrintWriter out = response.getWriter();

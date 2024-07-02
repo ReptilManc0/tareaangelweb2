@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 public class Conexion {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/control_cliente?useSSL=false&allowPublicKeyRetrieval=true";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3307/control_cliente?useSSL=false&allowPublicKeyRetrieval=true";
     private static final String JDBC_USER = "root"; //Cambiar por su usuario que corresponde
     private static final String JDBC_PASSWORD = ""; //Cambiar por la contraseña que corresponde
     
